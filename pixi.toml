@@ -1,0 +1,24 @@
+[workspace]
+authors = ["siquette <rodrigosiquette@gmail.com>"]
+channels = ["conda-forge"]
+name = "opniao_aegea"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+streamlit = "==1.31.0"
+pandas = ">=2.3.3,<3"
+plotly = ">=5.24.1,<6.0.0"
+scipy = ">=1.17.1,<2"
+numpy = ">=1.26.4,<2"
+matplotlib = ">=3.10.8,<4"
+seaborn = ">=0.13.2,<0.14"
+ipykernel = ">=7.2.0,<8"
+openpyxl = ">=3.1.5,<4"
+nbformat = ">=5.10.4,<6"
+ipywidgets = ">=8.1.8,<9"
+nbconvert = ">=7.17.0,<8"
+pandoc = ">=3.9.0.2,<4"
+
