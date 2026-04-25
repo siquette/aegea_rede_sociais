@@ -1,3 +1,5 @@
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+*.tar.gz
+quarto_/files/clipping.csv

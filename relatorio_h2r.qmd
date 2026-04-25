@@ -1,0 +1,46 @@
+---
+title: "Relatório de Inteligência de Reputação"
+subtitle: "Análise Dinâmica de Impacto e Sentimento na Mídia"
+author: "H2R Pesquisas Avançadas"
+date: last-modified
+lang: pt
+format: 
+  html:
+    theme: [cosmo, custom.scss]
+    toc: true
+    toc-title: "Sumário Executivo"
+    code-fold: true
+    code-summary: "Exibir Código Técnico (Apenas para Analistas)"
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{python}
+#| label: setup-e-dados
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import plotly.express as px
+from datetime import datetime
+
+# 1. CARREGAMENTO DOS DADOS (Conforme seu notebook)
+url = "[https://docs.google.com/spreadsheets/d/1UVGM5g7A2pSmg4Nn5eTzjZhd25sAFFDbkBclRfyNgX8/export?format=csv](https://docs.google.com/spreadsheets/d/1UVGM5g7A2pSmg4Nn5eTzjZhd25sAFFDbkBclRfyNgX8/export?format=csv)"
+df = pd.read_csv(url)
+
+# 2. LIMPEZA E ENGENHARIA (Validação de CRS/Tipagem)
+df['Data'] = pd.to_datetime(df['Data'], dayfirst=True, format='mixed', errors='coerce')
+df = df.dropna(subset=['Data']).sort_values('Data')
+df['Ano_Mes'] = df['Data'].dt.to_period('M').astype(str)
+
+# Filtro Orgânico: Removendo Publicidade
+df = df[df['Classificação'] != 'PUBLICIDADE']
+
+# Aplicação de Pesos Metodológicos (Escala Exponencial H2R)
+tier_weights = {'Muito Relevante': 8, 'Relevante': 4, 'Menos Relevante': 1, 'Null': 1}
+df['Peso'] = df['Tier'].map(tier_weights).fillna(1)
+
+# Lista de grupos para o filtro dinâmico
+lista_grupos = sorted(df['Grupo'].unique().tolist())
