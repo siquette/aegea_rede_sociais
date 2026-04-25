@@ -1603,7 +1603,7 @@ Desenvolvido com Streamlit + Plotly | Última atualização: {data_max.strftime(
 Geógrafo | MBA em Ciência de Dados | Especialização em IA
 </p>
 <p style="margin: 0.3rem 0 0 0; font-size: 0.8rem;">
-<a href="https://linkedin.com/in/rodrigo-siquette" style="color: #667eea; text-decoration: none;" target="_blank">LinkedIn</a>
+<a href="https://www.linkedin.com/in/rodrigo-aroni-siquette/" style="color: #667eea; text-decoration: none;" target="_blank">LinkedIn</a>
 </p>
 </div>
 </div>
